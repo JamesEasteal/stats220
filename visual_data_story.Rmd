@@ -1,0 +1,70 @@
+---
+title: "Visual Data Story: Observing Cars in the Wild"
+output: html_document
+---
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+```
+
+```{js}
+$(function() {
+  $(".level2").css('visibility', 'hidden');
+  $(".level2").first().css('visibility', 'visible');
+  $(".container-fluid").height($(".container-fluid").height() + 300);
+  $(window).on('scroll', function() {
+    $('h2').each(function() {
+      var h2Top = $(this).offset().top - $(window).scrollTop();
+      var windowHeight = $(window).height();
+      if (h2Top >= 0 && h2Top <= windowHeight / 2) {
+        $(this).parent('div').css('visibility', 'visible');
+      } else if (h2Top > windowHeight / 2) {
+        $(this).parent('div').css('visibility', 'hidden');
+      }
+    });
+  });
+})
+```
+
+```{css}
+.figcaption {display: none}
+body {
+  background-color: #f7fcfd;
+  font-family: sans-serif;
+}
+p {
+  font-weight: bold;
+}
+```
+
+## Introduction
+
+### This visual data story explores patterns in the behaviour of passing cars, based on observational data collected over several days. The dataset includes information on car colour, brand, speed, loudness, and whether a car was alone or part of a group.
+
+
+## Loudness by Car Colour
+
+![](https://raw.githubusercontent.com/JamesEasteal/stats220/main/plot1.png)
+*Alt text: Bar chart showing average loudness rating (1–5) for each observed car colour.*
+
+### This plot shows how loud different coloured cars were on average. Interestingly, Grey/Silver and black cars had the highest loudness ratings, while green and white cars were generally quieter. This could reflect either the engine types or perhaps driver behavior patterns.
+
+
+## Average Speed by Time of Day
+
+
+![](https://raw.githubusercontent.com/JamesEasteal/stats220/main/plot2.png)
+
+*Alt text: Line chart showing average car speed (in km/h) across different hours of the day.*
+
+### Cars appear to travel faster around 4pm. This may be due to the fact that around 3pm and 5pm there might be school and work traffic respectively which could slow cars down. The sky getting darker could be a reason for the cars getting slower past 5pm, as drivers might be more cautious with lower visibility.
+
+
+## Group Behaviour by Car Brand
+
+![](https://raw.githubusercontent.com/JamesEasteal/stats220/main/plot3.png)
+*Alt text: Bar chart showing average speed of each car brand. Some brands show consistently higher or lower average speeds.*
+
+### This plot shows average car speed by brand. Brands like Tesla, BMW, and Ford tended to have higher speeds, while Suzuki, Nissan averaged lower. This may reflect differences in engine type, vehicle purpose, or driver behaviour.
